@@ -4,7 +4,7 @@ public class Utils {
      * the row representing the rank and the column 
      * representing the file (1 = a, etc)
      */
-    public static ChessPiece[][] fenToArray(String FEN) {
+    public static ChessPiece[][] fenToBoard(String FEN) {
         ChessPiece[][] board = new ChessPiece[9][9];
         String[] rows = FEN.split(" ")[0].split("/");
         for (int row = 0; row < 8; row++) {
@@ -47,10 +47,14 @@ public class Utils {
         for (int row = 8; row >= 1; row--) {
             ChessPiece[] r = board[row];
 
+
             boardString += row + " ";
             for(int col = 1; col <= 8; col++){
                 ChessPiece c = r[col];
-                boardString += (c == null ? " " : c) + " ";
+                String squareColor = ((row + col) & 1) == 1 ? Settings.ws : Settings.bs;
+                // if the sum of row + col is odd, the square is white.
+
+                boardString += (c == null ? squareColor : c) + " ";
             }
             boardString += row;
             boardString += "\n";
@@ -61,6 +65,4 @@ public class Utils {
         else return new StringBuilder(boardString).reverse().toString();
 
     }
-
-    public static final boolean lightMode = true; 
 }

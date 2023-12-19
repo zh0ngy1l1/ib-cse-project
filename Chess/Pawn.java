@@ -5,7 +5,7 @@ public class Pawn extends ChessPiece {
 
     public String toString() {
         return (
-            (isWhite ^ Utils.lightMode) ? "♟︎" : "♙"
+            (isWhite ^ Settings.lightMode) ? "♟︎" : "♙"
         );
     }
 }

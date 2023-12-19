@@ -5,7 +5,7 @@ public class Queen extends ChessPiece {
 
     public String toString() {
         return (
-            (isWhite ^ Utils.lightMode) ? "♛" : "♕"
+            (isWhite ^ Settings.lightMode) ? "♛" : "♕"
         );
     }
 }
