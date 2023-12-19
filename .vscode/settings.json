@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        "Chess"
+    ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Chess/algs4.jar"
+    ]
+}

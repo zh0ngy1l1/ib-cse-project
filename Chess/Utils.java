@@ -1,12 +1,11 @@
-package Chess;
 public class Utils {
     /**
      * Takes the FEN notation and makes it an array with 
      * the row representing the rank and the column 
      * representing the file (1 = a, etc)
      */
-    public static char[][] fenToArray(String FEN) {
-        char[][] board = new char[8][8];
+    public static ChessPiece[][] fenToArray(String FEN) {
+        ChessPiece[][] board = new ChessPiece[9][9];
         String[] rows = FEN.split(" ")[0].split("/");
         for (int row = 0; row < 8; row++) {
             char[] rowCArr = rows[7 - row].toCharArray();
@@ -20,13 +19,16 @@ public class Utils {
                         q < Integer.parseInt(String.valueOf(current)); 
                         q++) {
 
-                        board[row][boardCol] = ' ';
+                        board[row + 1][boardCol + 1] = null;
                         boardCol++;
                     }
-                    board[row][boardCol] = ' ';
+                    board[row + 1][boardCol + 1] = null;
 
                 } else {
-                    board[row][boardCol] = current;
+                    board[row + 1][boardCol + 1] = ChessPiece.charToPiece(
+                        current, 
+                        new Pair<Integer, Integer>(row + 1, boardCol + 1)
+                        );
                 }
 
                 fenCol++;
@@ -34,4 +36,31 @@ public class Utils {
         }
         return board;
     }
+
+    /**
+     * Takes a 9x9 array of ChessPiece and who's turn it is
+     * and returns a string of what the board looks like.
+     */
+    public static String displayBoard(ChessPiece[][] board, boolean whitesTurn) {
+        String boardString = "  a b c d e f g h  \n";
+
+        for (int row = 8; row >= 1; row--) {
+            ChessPiece[] r = board[row];
+
+            boardString += row + " ";
+            for(int col = 1; col <= 8; col++){
+                ChessPiece c = r[col];
+                boardString += (c == null ? " " : c) + " ";
+            }
+            boardString += row;
+            boardString += "\n";
+        }
+        boardString += "  a b c d e f g h  ";
+        
+        if (whitesTurn) return boardString;
+        else return new StringBuilder(boardString).reverse().toString();
+
+    }
+
+    public static final boolean lightMode = true; 
 }
