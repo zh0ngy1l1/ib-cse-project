@@ -5,7 +5,7 @@ public class Bishop extends ChessPiece {
 
     public String toString() {
         return (
-            (isWhite ^ Utils.lightMode) ? "♗" : "♝"
+            (isWhite ^ Utils.lightMode) ? "♝" : "♗"
         );
     }
 }
