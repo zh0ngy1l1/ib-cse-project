@@ -1,5 +1,5 @@
 public class Rook extends ChessPiece {
-    public Rook(boolean isWhite, Pair<Integer, Integer> position) {
+    public Rook(boolean isWhite, Pair position) {
         super(isWhite, position);
     }
 

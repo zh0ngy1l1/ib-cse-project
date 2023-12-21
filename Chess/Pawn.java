@@ -1,5 +1,5 @@
 public class Pawn extends ChessPiece {
-    public Pawn(boolean isWhite, Pair<Integer, Integer> position) {
+    public Pawn(boolean isWhite, Pair position) {
         super(isWhite, position);
     }
 

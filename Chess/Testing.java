@@ -14,6 +14,11 @@ public class Testing {
                 board, false
                 )
             );
+        Bishop b = (Bishop) board[3][5];
+        Pair[] moves = b.getMoves();
+        for (Pair move : moves) {
+            System.out.println(move);
+        }
         
     }
 }

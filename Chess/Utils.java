@@ -27,7 +27,7 @@ public class Utils {
                 } else {
                     board[row + 1][boardCol + 1] = ChessPiece.charToPiece(
                         current, 
-                        new Pair<Integer, Integer>(row + 1, boardCol + 1)
+                        new Pair(row + 1, boardCol + 1)
                         );
                 }
 

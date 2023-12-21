@@ -1,5 +1,5 @@
 public class Knight extends ChessPiece {
-    public Knight(boolean isWhite, Pair<Integer, Integer> position) {
+    public Knight(boolean isWhite, Pair position) {
         super(isWhite, position);
     }
 

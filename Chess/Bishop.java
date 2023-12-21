@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class Bishop extends ChessPiece {
-    public Bishop(boolean isWhite, Pair<Integer, Integer> position) {
+    public Bishop(boolean isWhite, Pair position) {
         super(isWhite, position);
     }
 
-    public Pair<Integer, Integer>[] getMoves() {
+    public Pair[] getMoves() {
         ArrayList<
-            Pair<Integer, Integer>
+            Pair
         > moves = new ArrayList<>();
 
         for (int dRow = -7; dRow <= 7; dRow++) {
@@ -21,7 +21,7 @@ public class Bishop extends ChessPiece {
                 int newCol = position.getSecond() + dCol;
                 if (newCol < 1 | newCol > 8) continue;
 
-                moves.add(new Pair<Integer,Integer>(newRow, newCol));
+                moves.add(new Pair(newRow, newCol));
             }
         }
         return moves.toArray(new Pair[0]);

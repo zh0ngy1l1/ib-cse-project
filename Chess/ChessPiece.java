@@ -1,17 +1,17 @@
 
 public class ChessPiece {
     // Common properties and methods for all chess pieces
-    Pair<Integer, Integer> position;
+    Pair position;
     boolean isWhite;
     boolean hasMoved;
     
-    public ChessPiece(boolean isWhite, Pair<Integer, Integer> position) {
+    public ChessPiece(boolean isWhite, Pair position) {
         this.position = position;
         this.isWhite = isWhite;
         this.hasMoved = false;
     }
 
-    public static ChessPiece charToPiece(char c, Pair<Integer, Integer> position) {
+    public static ChessPiece charToPiece(char c, Pair position) {
         boolean isWhite = Character.isUpperCase(c) ? true : false;
         c = Character.toLowerCase(c);
 

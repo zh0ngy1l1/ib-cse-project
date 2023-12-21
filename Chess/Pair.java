@@ -1,27 +1,27 @@
 //this is chatGPT code.
 //not mine.
-public class Pair<T extends Comparable<T>, U extends Comparable<U>> implements Comparable<Pair<T, U>> {
-    private T first;
-    private U second;
+public class Pair implements Comparable<Pair> {
+    private int first;
+    private int second;
 
-    public Pair(T first, U second) {
+    public Pair(int first, int second) {
         this.first = first;
         this.second = second;
     }
 
-    public T getFirst() {
+    public int getFirst() {
         return first;
     }
 
-    public U getSecond() {
+    public int getSecond() {
         return second;
     }
 
-    public void setFirst(T first) {
+    public void setFirst(int first) {
         this.first = first;
     }
 
-    public void setSecond(U second) {
+    public void setSecond(int second) {
         this.second = second;
     }
 
@@ -31,11 +31,11 @@ public class Pair<T extends Comparable<T>, U extends Comparable<U>> implements C
     }
 
     @Override
-    public int compareTo(Pair<T, U> other) {
-        int firstComparison = this.first.compareTo(other.getFirst());
+    public int compareTo(Pair other) {
+        int firstComparison = Integer.compare(this.first, other.getFirst());
         if (firstComparison != 0) {
             return firstComparison;
         }
-        return this.second.compareTo(other.getSecond());
+        return Integer.compare(this.second, other.getSecond());
     }
 }
