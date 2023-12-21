@@ -15,7 +15,5 @@ public class Testing {
                 )
             );
         
-        char a = '♔';
-        System.out.println((int) a);
     }
 }
