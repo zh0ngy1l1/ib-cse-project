@@ -12,7 +12,7 @@ public class ChessPiece {
         this.hasMoved = false;
     }
 
-    public Pair[] getMoves(ChessPiece[][] board) {
+    public Pair[] getMoves(Board board) {
         // getMoves should be done with an existing piece, so it's implemented in the child class.
         throw new UnsupportedOperationException("There's a bug if this happens.");
     }
@@ -44,7 +44,7 @@ public class ChessPiece {
      * moves for rook, bishop, queen
      * todo finish docstring
      */
-    public Pair[] stepForMoves(ChessPiece[][] board, int dRow, int dCol) {
+    public ArrayList<Pair> stepForMoves(Board board, int dRow, int dCol) {
         ArrayList<Pair> moves = new ArrayList<>();
 
         int curRow = this.position.getFirst(), 
@@ -58,15 +58,17 @@ public class ChessPiece {
             int newCol = curCol + steps * dCol;
             if (newCol > 8 | newCol < 1) break;
 
-            if (board[newRow][newCol] != null) {
-                if (isEnemy(board[newRow][newCol])) {
-                    moves.add(new Pair(newRow, newCol));
+            Pair newPosition = new Pair(newRow, newCol);
+
+            if (board.pieceAt(newPosition) != null) {
+                if (isEnemy(board.pieceAt(newPosition))) {
+                    moves.add(newPosition);
                 }
                 break;
             }
-            moves.add(new Pair(newRow, newCol));
+            moves.add(newPosition);
         }
-        return moves.toArray(new Pair[0]);
+        return moves;
     }
 
 }
