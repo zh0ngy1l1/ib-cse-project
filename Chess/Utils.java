@@ -65,4 +65,34 @@ public class Utils {
         else return new StringBuilder(boardString).reverse().toString();
 
     }
+
+    public static String displayMoves(Pair[] moves, boolean whitesTurn) {
+        
+        boolean[][] board = new boolean[9][9];
+        for (Pair move : moves) {
+            board[move.getFirst()][move.getSecond()] = true;
+        }
+
+        String boardString = "  a b c d e f g h  \n";
+
+        for (int row = 8; row >= 1; row--) {
+            boolean[] r = board[row];
+
+            boardString += row + " ";
+            for(int col = 1; col <= 8; col++){
+                boolean c = r[col];
+                String squareColor = ((row + col) & 1) == 1 ? Settings.ws : Settings.bs;
+                // if the sum of row + col is odd, the square is white.
+
+                boardString += (c == false ? squareColor : "#") + " ";
+            }
+            boardString += row;
+            boardString += "\n";
+        }
+        boardString += "  a b c d e f g h  ";
+        
+        if (whitesTurn) return boardString;
+        else return new StringBuilder(boardString).reverse().toString();
+    
+    }
 }

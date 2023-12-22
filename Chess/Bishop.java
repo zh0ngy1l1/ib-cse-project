@@ -5,26 +5,16 @@ public class Bishop extends ChessPiece {
         super(isWhite, position);
     }
 
-    public Pair[] getMoves() {
-        ArrayList<
-            Pair
-        > moves = new ArrayList<>();
+    public Pair[] getMoves(ChessPiece[][] board) {
+        ArrayList<Pair> moves = new ArrayList<>();
 
-        for (int dRow = -7; dRow <= 7; dRow++) {
-            if (dRow == 0) continue;
-
-            int newRow = position.getFirst() + dRow;
-            if (newRow < 1 | newRow > 8) continue;
-
-            for (int dCol : new int[]{dRow, -dRow}) {
-
-                int newCol = position.getSecond() + dCol;
-                if (newCol < 1 | newCol > 8) continue;
-
-                moves.add(new Pair(newRow, newCol));
+        for (int dRow : new int[] {-1, 1}) {
+            for (int dCol : new int[] {-1, 1}) {
+                
+                moves = Utils.join(moves, this.straightMoves(board, dRow, dCol));
             }
         }
-        return moves.toArray(new Pair[0]);
+        return moves;
     
     }
 
