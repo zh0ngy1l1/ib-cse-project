@@ -12,11 +12,18 @@ public class ChessPiece {
         this.hasMoved = false;
     }
 
-    public Pair[] getMoves(Board board) {
+    /**
+     * you shouldn't ever have an object that is ChessPiece but not any specific ChessPiece.
+     * So this throws an error.
+     */
+    public ArrayList<Pair> getMoves(Board board) {
         // getMoves should be done with an existing piece, so it's implemented in the child class.
         throw new UnsupportedOperationException("There's a bug if this happens.");
     }
 
+    /**
+     * Given the FEN character and position of the piece, creates an object for it.
+     */
     public static ChessPiece charToPiece(char c, Pair position) {
         boolean isWhite = Character.isUpperCase(c) ? true : false;
         c = Character.toLowerCase(c);
@@ -36,13 +43,15 @@ public class ChessPiece {
         }
     }
 
+    
     public boolean isEnemy(ChessPiece p) {
         return this.isWhite ^ p.isWhite;
     }
 
     /**
      * moves for rook, bishop, queen
-     * todo finish docstring
+     * Steps one at a time to direction determined by dRow and dCol.
+     * Stops to capture or before ally piece and returns all moves in this direction.
      */
     public ArrayList<Pair> stepForMoves(Board board, int dRow, int dCol) {
         ArrayList<Pair> moves = new ArrayList<>();

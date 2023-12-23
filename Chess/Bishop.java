@@ -5,7 +5,12 @@ public class Bishop extends ChessPiece {
         super(isWhite, position);
     }
 
-    public Pair[] getMoves(Board board) {
+
+    /**
+     * Returns an ArrayList of all the possible moves
+     * may and probably return some illegal moves (put own king in check, etc.
+     */
+    public ArrayList<Pair> getMoves(Board board) {
         ArrayList<Pair> moves = new ArrayList<>();
 
         for (int dRow : new int[] {-1, 1}) {
@@ -14,7 +19,7 @@ public class Bishop extends ChessPiece {
                 moves.addAll(this.stepForMoves(board, dRow, dCol));
             }
         }
-        return moves.toArray(new Pair[0]);
+        return moves;
     
     }
 
