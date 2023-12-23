@@ -19,7 +19,7 @@ public class Testing {
         //System.out.println(Utils.displayBoard(board, false));
 
         ChessPiece q = board.pieceAt(new Pair(3, 5));
-        Pair[] moves = q.getMoves(board);
+        ArrayList<Pair> moves = q.getMoves(board);
 
         for (Pair move : moves) {
             System.out.print(move + " ");

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Utils {
     /**
      * Takes the FEN notation and makes it an array with 
@@ -47,7 +49,6 @@ public class Utils {
         for (int row = 8; row >= 1; row--) {
             ChessPiece[] r = board[row];
 
-
             boardString += row + " ";
             for(int col = 1; col <= 8; col++){
                 ChessPiece c = r[col];
@@ -66,7 +67,7 @@ public class Utils {
 
     }
 
-    public static String displayMoves(Pair[] moves, boolean whitesTurn) {
+    public static String displayMoves(ArrayList<Pair> moves, boolean whitesTurn) {
         
         boolean[][] board = new boolean[9][9];
         for (Pair move : moves) {

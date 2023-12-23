@@ -4,7 +4,7 @@ public class Board {
     public Board(String FEN) {
         this.board = Utils.fenToBoard(FEN);
     }
-
+    
     public ChessPiece pieceAt(Pair position) {
         return board[position.getFirst()][position.getSecond()];
     }
@@ -13,12 +13,11 @@ public class Board {
         String boardString = "  a b c d e f g h  \n";
 
         for (int row = 8; row >= 1; row--) {
-            ChessPiece[] r = this.board[row];
-
 
             boardString += row + " ";
             for(int col = 1; col <= 8; col++){
-                ChessPiece c = r[col];
+                ChessPiece c = pieceAt(new Pair(row, col));
+
                 String squareColor = ((row + col) & 1) == 1 ? Settings.ws : Settings.bs;
                 // if the sum of row + col is odd, the square is white.
 
