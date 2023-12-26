@@ -8,7 +8,7 @@ public class Rook extends ChessPiece {
 
     /**
      * Returns an ArrayList of all the possible moves
-     * may and probably return some illegal moves (put own king in check, etc.
+     * may and probably return some illegal moves (put own king in check, etc.)
      */
     public ArrayList<Move> getMoves(Board board) {
         ArrayList<Move> moves = new ArrayList<>();
