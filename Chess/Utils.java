@@ -42,7 +42,6 @@ public class Utils {
     
     /**
      * Is square within the 8x8 chessboard?
-     * 
      */
     public static boolean isValidSquare(Pair square) {
         return (
@@ -61,7 +60,14 @@ public class Utils {
             squares.add(move.to);
         }
         return squares;
+    }
     
+
+    /**
+     * get the direction of the pawn based on its color.
+     */
+    public static int getPawnDirection(boolean isWhite) {
+        return isWhite ? 1 : -1;
     }
     
     /**

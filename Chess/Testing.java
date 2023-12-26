@@ -7,12 +7,18 @@ public class Testing {
 
         String FEN = "r3k2r/2p1npp1/1pnpbq1p/pB2p3/P3P3/2PPbN2/1PQN1PPP/R4RK1 w kq - 0 13";
         Board board = new Board(FEN);
+
+        if (board.pieceAt(location) == null) {
+            System.out.println("no piece at " + location);
+            return;  // no piece at location, so no moves to test.
+        }
+
         System.out.println("white's pov:");
         //System.out.println("\nblack's pov:");
         //System.out.println(Utils.displayBoard(board, false));
 
-        ChessPiece q = board.pieceAt(location);
-        ArrayList<Move> moves = q.getMoves(board);
+        ChessPiece p = board.pieceAt(location);
+        ArrayList<Move> moves = p.getMoves(board);
 
         for (Move move : moves) {
             System.out.print(move + " ");
@@ -23,7 +29,11 @@ public class Testing {
             true));
     }
     public static void main(String[] args) {
-        test1(new Pair(8, 5));
-        test1(new Pair(6, 6));
+        for (int i = 3; i <= 6; i++) {
+            for (int j = 3; j <= 6; j++) {
+                test1(new Pair(i, j));
+                System.out.println("\n");
+            }
+        }
     }
 }

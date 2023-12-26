@@ -45,6 +45,7 @@ public class ChessPiece {
 
     
     public boolean isEnemy(ChessPiece p) {
+        if (p == null) return false; // if p is null, then it's not an enemy.)
         return this.isWhite ^ p.isWhite;
     }
 

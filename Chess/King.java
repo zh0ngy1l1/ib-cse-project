@@ -8,6 +8,7 @@ public class King extends ChessPiece {
     /**
      * Returns an ArrayList of all the possible moves
      * may and probably return some illegal moves (put own king in check, etc.)
+     * TODO castling
      */
     public ArrayList<Move> getMoves(Board board) {
         ArrayList<Move> moves = new ArrayList<>();
@@ -22,7 +23,6 @@ public class King extends ChessPiece {
             }
         }
         return moves;
-    
     }
 
     public String toString() {
