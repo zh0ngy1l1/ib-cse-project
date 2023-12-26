@@ -16,7 +16,7 @@ public class ChessPiece {
      * you shouldn't ever have an object that is ChessPiece but not any specific ChessPiece.
      * So this throws an error.
      */
-    public ArrayList<Pair> getMoves(Board board) {
+    public ArrayList<Move> getMoves(Board board) {
         // getMoves should be done with an existing piece, so it's implemented in the child class.
         throw new UnsupportedOperationException("There's a bug if this happens.");
     }
@@ -53,8 +53,8 @@ public class ChessPiece {
      * Steps one at a time to direction determined by dRow and dCol.
      * Stops to capture or before ally piece and returns all moves in this direction.
      */
-    public ArrayList<Pair> stepForMoves(Board board, int dRow, int dCol) {
-        ArrayList<Pair> moves = new ArrayList<>();
+    public ArrayList<Move> stepForMoves(Board board, int dRow, int dCol) {
+        ArrayList<Move> moves = new ArrayList<>();
 
         int curRow = this.position.getFirst(), 
             curCol = this.position.getSecond();
@@ -71,11 +71,11 @@ public class ChessPiece {
 
             if (board.pieceAt(newPosition) != null) {
                 if (isEnemy(board.pieceAt(newPosition))) {
-                    moves.add(newPosition);
+                    moves.add(new Move(this.position, newPosition, true));
                 }
                 break;
             }
-            moves.add(newPosition);
+            moves.add(new Move(this.position, newPosition, true));
         }
         return moves;
     }

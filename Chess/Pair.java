@@ -25,6 +25,11 @@ public class Pair implements Comparable<Pair> {
         this.second = second;
     }
 
+    public String toBoardLocation() {
+        return "" + (char) ('a' + second - 1) + (char) ('1' + first - 1);
+    
+    }
+
     @Override
     public String toString() {
         return "(" + first + ", " + second + ")";

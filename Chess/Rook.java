@@ -6,25 +6,20 @@ public class Rook extends ChessPiece {
         super(isWhite, position);
     }
 
-    public Pair[] getMoves() {
-        ArrayList<Pair> moves = new ArrayList<>();
+    /**
+     * Returns an ArrayList of all the possible moves
+     * may and probably return some illegal moves (put own king in check, etc.
+     */
+    public ArrayList<Move> getMoves(Board board) {
+        ArrayList<Move> moves = new ArrayList<>();
 
-        int curRow = this.position.getFirst(), 
-            curCol = this.position.getSecond();
-        
-        for (int newRow = 1; newRow <= 8; newRow++) {
-            if (newRow == curRow) continue;
-
-            moves.add(new Pair(newRow, curCol));
+        for (int dRow : new int[] {-1, 1}) {
+            moves.addAll(this.stepForMoves(board, dRow, 0));
         }
-
-        for (int newCol = 1; newCol <= 8; newCol++) {
-            if (newCol == curCol) continue;
-
-            moves.add(new Pair(curRow, newCol));
+         for (int dCol : new int[] {-1, 1}) {
+            moves.addAll(this.stepForMoves(board, 0, dCol));
         }
-
-        return moves.toArray(new Pair[0]);
+        return moves;
     
     }
 
