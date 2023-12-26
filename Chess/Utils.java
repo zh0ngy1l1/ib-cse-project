@@ -39,10 +39,36 @@ public class Utils {
         return board;
     }
 
+    
+    /**
+     * Is square within the 8x8 chessboard?
+     * 
+     */
+    public static boolean isValidSquare(Pair square) {
+        return (
+            !(square.getFirst() < 1 || square.getFirst() > 8 || 
+            square.getSecond() < 1 || square.getSecond() > 8
+        ));
+    }
+    
+    
+    /**
+     * get only the targeted squares from a list of moves.
+     */
+    public static ArrayList<Pair> getTargetedSquares(ArrayList<Move> moves) {
+        ArrayList<Pair> squares = new ArrayList<>();
+        for (Move move : moves) {
+            squares.add(move.to);
+        }
+        return squares;
+    
+    }
+    
     /**
      * Takes a 9x9 array of ChessPiece and who's turn it is
      * and returns a string of what the board looks like.
      */
+    @Deprecated
     public static String displayBoard(ChessPiece[][] board, boolean whitesTurn) {
         String boardString = "  a b c d e f g h  \n";
 
@@ -67,6 +93,7 @@ public class Utils {
 
     }
 
+    @Deprecated
     public static String displayMoves(ArrayList<Pair> moves, boolean whitesTurn) {
         
         boolean[][] board = new boolean[9][9];
@@ -96,4 +123,7 @@ public class Utils {
         else return new StringBuilder(boardString).reverse().toString();
     
     }
+
+
+
 }

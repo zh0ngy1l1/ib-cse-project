@@ -3,21 +3,21 @@ public class Settings {
     public static final String ws = " ", bs = " ";
     public static final String startingFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
 
-    public static String getOverlaySeparator(byte previousMask, byte currentMask) {
-        // if previous mask is 0 and current mask is 0, return " "
-        // if previous mask is 1 and current mask is 1, return "|"
-        // if previous mask is 0 and current mask is 1, return "["
-        // if previous mask is 1 and current mask is 0, return "]"
-        if (previousMask == 0 && currentMask == 0)
+    public static String getOverlaySeparator(boolean previousOccupied, boolean currentOccupied) {
+        // if previous is not occupied and current is not occupied, return " "
+        // if previous is occupied and current is occupied, return "|"
+        // if previous is not occupied and current is occupied, return "["
+        // if previous is occupied and current is not occupied, return "]"
+        if (previousOccupied == false && currentOccupied == false)
             return " ";
-        if (previousMask == 0 && currentMask == 1)
+        if (previousOccupied == false && currentOccupied == true)
             return "[";
-        if (previousMask == 1 && currentMask == 0)
+        if (previousOccupied == true && currentOccupied == false)
             return "]";
         
         return "|";
     }
 
-    
+
 
 }

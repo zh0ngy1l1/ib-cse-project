@@ -3,7 +3,8 @@ public class Move {
     public ChessPiece piece;
     public boolean isCapture;
 
-    public Move(Pair from, Pair to, boolean isCapture) {
+    public Move(ChessPiece piece, Pair from, Pair to, boolean isCapture) {
+        this.piece = piece;
         this.from = from;
         this.to = to;
         this.isCapture = isCapture;

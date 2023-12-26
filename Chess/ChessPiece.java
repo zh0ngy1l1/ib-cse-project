@@ -61,23 +61,48 @@ public class ChessPiece {
         
         for (int steps = 1; steps <= 7; steps++) {
 
-            int newRow = curRow + steps * dRow;
-            if (newRow > 8 | newRow < 1) break;
+            Pair newPosition = new Pair(
+                curRow + steps * dRow, 
+                curCol + steps * dCol
+            );
 
-            int newCol = curCol + steps * dCol;
-            if (newCol > 8 | newCol < 1) break;
-
-            Pair newPosition = new Pair(newRow, newCol);
+            if (!Utils.isValidSquare(newPosition)) break;
 
             if (board.pieceAt(newPosition) != null) {
                 if (isEnemy(board.pieceAt(newPosition))) {
-                    moves.add(new Move(this.position, newPosition, true));
+                    moves.add(new Move(this, this.position, newPosition, true));
                 }
                 break;
             }
-            moves.add(new Move(this.position, newPosition, true));
+            moves.add(new Move(this, this.position, newPosition, false));
         }
         return moves;
+    }
+
+    /**
+     * moves for king and knight
+     * Steps once to direction determined by dRow and dCol.
+     * Returns either null (move cannot be made) or the move.
+     */
+    public Move stepOnce(Board board, int dRow, int dCol) {
+
+        int curRow = this.position.getFirst(), 
+            curCol = this.position.getSecond();
+
+        Pair newPosition = new Pair(
+            curRow + dRow, 
+            curCol + dCol
+        );
+
+        if (!Utils.isValidSquare(newPosition)) return null;
+
+        if (board.pieceAt(newPosition) != null) {
+            if (isEnemy(board.pieceAt(newPosition))) {
+                return new Move(this, this.position, newPosition, true);
+            }
+            return null;
+        }
+        return new Move(this, this.position, newPosition, false);
     }
 
 }

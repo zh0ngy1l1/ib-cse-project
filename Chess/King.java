@@ -5,28 +5,23 @@ public class King extends ChessPiece {
         super(isWhite, position);
     }
 
-    public Pair[] getMoves() {
-        ArrayList<Pair> moves = new ArrayList<>();
+    /**
+     * Returns an ArrayList of all the possible moves
+     * may and probably return some illegal moves (put own king in check, etc.)
+     */
+    public ArrayList<Move> getMoves(Board board) {
+        ArrayList<Move> moves = new ArrayList<>();
 
-        int curRow = this.position.getFirst(), 
-            curCol = this.position.getSecond();
+        for (int dRow : new int[] {-1, 0, 1}) {
+            for (int dCol : new int[] {-1, 0, 1}) {
+                if (dRow == 0 && dCol == 0) continue; // skip the current position
 
-        for (int dRow = -1; dRow <= 1; dRow++) {
-
-            int newRow = curRow + dRow;
-            if (newRow < 1 | newRow > 8) continue;
-
-            for (int dCol = -1; dCol <= 1; dCol++) {
-
-                int newCol = curCol + dCol;
-                if (newCol < 1 | newCol > 8) continue;
-                if (newRow == curRow & newCol == curCol) continue;
-
-                moves.add(new Pair(newRow, newCol));
+                Move currentMove = stepOnce(board, dRow, dCol);
+                if (currentMove == null) continue; // skip if the move is not valid
+                moves.add(currentMove);
             }
         }
-
-        return moves.toArray(new Pair[0]);
+        return moves;
     
     }
 

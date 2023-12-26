@@ -7,24 +7,25 @@ public class Board {
         this.board = Utils.fenToBoard(FEN);
     }
     
-    public ChessPiece pieceAt(Pair position) {
-        return board[position.getFirst()][position.getSecond()];
+    public ChessPiece pieceAt(Pair square) {
+        if (!Utils.isValidSquare(square)) {
+            throw new IllegalArgumentException("Square out of bounds");
+        }
+
+        return board[square.getFirst()][square.getSecond()];
     }
 
 
     /**
      * Display the board, with chess pieces,
      * In addition, the overlay squares are highlighted
-     * squares are the
      */
     public String displayBoard(ArrayList<Pair> overlaySquares, boolean whitesTurn) {
 
-        // initially overlayboard are all 0s
-        byte[][] overlayBoard = new byte[9][9];
+        boolean[][] overlayBoard = new boolean[9][9];
 
-        // positions to highlighted are marked 1
         for (Pair square : overlaySquares) {
-            overlayBoard[square.getFirst()][square.getSecond()] = 1;
+            overlayBoard[square.getFirst()][square.getSecond()] = true;
         }
 
         String boardString = "  a b c d e f g h  \n";
@@ -44,7 +45,7 @@ public class Board {
             }
             
             // now the last overlayboard separator
-            boardString += Settings.getOverlaySeparator(overlayBoard[row][8], (byte)0);
+            boardString += Settings.getOverlaySeparator(overlayBoard[row][8], false);
             boardString += row + "\n";
         }
         boardString += "  a b c d e f g h  ";
