@@ -1,12 +1,26 @@
 import java.util.ArrayList;
 
-public class Board {
-    private ChessPiece[][] board;
+public class Board implements Cloneable{
+    protected ChessPiece[][] board;
     
     public Board(String FEN) {
         this.board = Utils.fenToBoard(FEN);
     }
     
+    public static Board getBoardAfterMove(Board originalBoard, Move move) {
+        try {
+            Board newBoard = (Board) originalBoard.clone();
+            newBoard.board[move.from.getFirst()][move.from.getSecond()] = null;
+            newBoard.board[move.to.getFirst()][move.to.getSecond()] = move.piece;
+            move.piece.position = move.to;
+            return newBoard;
+        } catch (CloneNotSupportedException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    
+    }
+
     public ChessPiece pieceAt(Pair square) {
         if (!Utils.isValidSquare(square)) {
             throw new IllegalArgumentException("Square out of bounds");
@@ -14,7 +28,6 @@ public class Board {
 
         return board[square.getFirst()][square.getSecond()];
     }
-
 
     /**
      * Display the board, with chess pieces,
@@ -39,13 +52,13 @@ public class Board {
                 // if the sum of row + col is odd, the square is white.
                 String squareColor = ((row + col) & 1) == 1 ? Settings.ws : Settings.bs;
 
-                String overlaySeparator = Settings.getOverlaySeparator(overlayBoard[row][col-1], overlayBoard[row][col]);
+                String overlaySeparator = Settings.getOverlaySeparator(overlayBoard[row][col-1], overlayBoard[row][col], whitesTurn);
 
                 boardString += overlaySeparator + (piece == null ? squareColor : piece);
             }
             
             // now the last overlayboard separator
-            boardString += Settings.getOverlaySeparator(overlayBoard[row][8], false);
+            boardString += Settings.getOverlaySeparator(overlayBoard[row][8], false, whitesTurn);
             boardString += row + "\n";
         }
         boardString += "  a b c d e f g h  ";
@@ -56,4 +69,8 @@ public class Board {
     }
 
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }
