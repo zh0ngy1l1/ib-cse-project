@@ -33,7 +33,7 @@ public class Pawn extends ChessPiece {
         if (board.pieceAt(newPosition) == null) {
             moves.add(new Move(this, this.position, newPosition, false));
 
-            if (!this.hasMoved) {
+            if (curRow == Utils.getPawnStartingRow(isWhite)) {
                 // Move two squares forward if it's the pawn's first move
                 // because it's the pawn's first move, the target square must be valid.
                 newPosition = new Pair(

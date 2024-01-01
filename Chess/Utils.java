@@ -6,9 +6,9 @@ public class Utils {
      * the row representing the rank and the column 
      * representing the file (1 = a, etc)
      */
-    public static ChessPiece[][] fenToBoard(String FEN) {
+    public static ChessPiece[][] fenToBoard(String FEN_board) {
         ChessPiece[][] board = new ChessPiece[9][9];
-        String[] rows = FEN.split(" ")[0].split("/");
+        String[] rows = FEN_board.split("/");
         for (int row = 0; row < 8; row++) {
             char[] rowCArr = rows[7 - row].toCharArray();
             int fenCol = 0;
@@ -97,6 +97,10 @@ public class Utils {
         if (whitesTurn) return boardString;
         else return new StringBuilder(boardString).reverse().toString();
 
+    }
+
+    public static int getPawnStartingRow(boolean isWhite) {
+        return isWhite ? 2 : 7;
     }
 
     @Deprecated

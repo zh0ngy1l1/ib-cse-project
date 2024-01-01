@@ -4,12 +4,10 @@ public class ChessPiece {
     // Common properties and methods for all chess pieces
     Pair position;
     boolean isWhite;
-    boolean hasMoved;
     
     public ChessPiece(boolean isWhite, Pair position) {
         this.position = position;
         this.isWhite = isWhite;
-        this.hasMoved = false;
     }
 
     /**
