@@ -29,11 +29,8 @@ public class Testing {
             true));
     }
     public static void main(String[] args) {
-        for (int i = 3; i <= 6; i++) {
-            for (int j = 3; j <= 6; j++) {
-                test1(new Pair(i, j));
-                System.out.println("\n");
-            }
-        }
+        Pair p = new Pair("h6");
+        System.out.println(p);
+
     }
 }

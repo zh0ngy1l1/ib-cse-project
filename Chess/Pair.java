@@ -9,6 +9,11 @@ public class Pair implements Comparable<Pair> {
         this.second = second;
     }
 
+    public Pair(String chessSquare) {
+        this.first = Integer.valueOf(chessSquare.substring(1));
+        this.second = (int) chessSquare.charAt(0) - (int) 'a' + 1;
+    }
+
     public int getFirst() {
         return first;
     }

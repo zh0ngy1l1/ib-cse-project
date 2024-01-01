@@ -69,6 +69,26 @@ public class Utils {
     public static int getPawnDirection(boolean isWhite) {
         return isWhite ? 1 : -1;
     }
+
+    public static Pair getEnPassantTarget(String chessSquare) {
+        if (chessSquare.equals("-")) return null; 
+        return new Pair(chessSquare);
+    }
+
+    /**
+     * returns an array of 4 booleans.
+     * where the first entry tells if kingside castle is possible for white
+     * and the second bit tells if queenside is for white
+     * third: king black. fourth: queen black.
+     */
+    public static boolean[] getCastleArray(String FEN_castle, boolean whitesTurn) {
+        boolean[] castleArray = new boolean[4];
+        castleArray[0] = FEN_castle.contains("K");
+        castleArray[1] = FEN_castle.contains("Q");
+        castleArray[3] = FEN_castle.contains("q");
+        castleArray[2] = FEN_castle.contains("k");
+        return castleArray;
+    }
     
     /**
      * Takes a 9x9 array of ChessPiece and who's turn it is
@@ -99,6 +119,9 @@ public class Utils {
 
     }
 
+    /**
+     * What's this pawn's starting row?
+     */
     public static int getPawnStartingRow(boolean isWhite) {
         return isWhite ? 2 : 7;
     }

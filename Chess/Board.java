@@ -2,9 +2,19 @@ import java.util.ArrayList;
 
 public class Board implements Cloneable{
     protected ChessPiece[][] board;
-    
+    public boolean whitesTurn;
+    private boolean[] castleArray;
+    private Pair enPassantTarget;
+
     public Board(String FEN) {
-        this.board = Utils.fenToBoard(FEN);
+
+        String[] FEN_parts = FEN.split(" "); //"r3k2r/2p1npp1/1pnpbq1p/pB2p3/P3P3/2PPbN2/1PQN1PPP/R4RK1 w kq - 0 13"
+        
+        this.board = Utils.fenToBoard(FEN_parts[0]);
+        this.whitesTurn = FEN_parts[1].equals("w");
+        this.castleArray = Utils.getCastleArray(FEN_parts[2], whitesTurn);
+        this.enPassantTarget = Utils.getEnPassantTarget(FEN_parts[3]);
+        //gotta add 50moverule and threefold repetition counters for board.
     }
     
     public static Board getBoardAfterMove(Board originalBoard, Move move) {
@@ -13,6 +23,9 @@ public class Board implements Cloneable{
             newBoard.board[move.from.getFirst()][move.from.getSecond()] = null;
             newBoard.board[move.to.getFirst()][move.to.getSecond()] = move.piece;
             move.piece.position = move.to;
+            newBoard.enPassantTarget = null; //FIX THIS
+            newBoard.whitesTurn = !originalBoard.whitesTurn;
+
             return newBoard;
         } catch (CloneNotSupportedException e) {
             System.out.println(e.getMessage());
