@@ -1,4 +1,9 @@
+package fi.syk.chess.tools;
+
 import java.util.ArrayList;
+import fi.syk.chess.pieces.*;
+import fi.syk.chess.Settings;
+
 
 public class Utils {
     /**

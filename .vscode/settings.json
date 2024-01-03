@@ -1,9 +1,11 @@
 {
-    "java.project.sourcePaths": [
-        "Chess"
-    ],
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "Chess/algs4.jar"
-    ]
+    "java.project.sourcePaths": ["src/java"],
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "/home/david/codework/ib-cse-project/lib/algs4.jar"
+        ],
+        "exclude": [
+        ]
+    }
 }

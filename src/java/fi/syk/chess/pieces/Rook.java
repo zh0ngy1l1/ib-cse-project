@@ -1,7 +1,13 @@
+package fi.syk.chess.pieces;
+
 import java.util.ArrayList;
 
-public class Bishop extends ChessPiece {
-    public Bishop(boolean isWhite, Pair position) {
+import fi.syk.chess.*;
+import fi.syk.chess.tools.*;
+
+public class Rook extends ChessPiece {
+    
+    public Rook(boolean isWhite, Pair position) {
         super(isWhite, position);
     }
 
@@ -13,10 +19,10 @@ public class Bishop extends ChessPiece {
         ArrayList<Move> moves = new ArrayList<>();
 
         for (int dRow : new int[] {-1, 1}) {
-            for (int dCol : new int[] {-1, 1}) {
-                
-                moves.addAll(this.stepForMoves(board, dRow, dCol));
-            }
+            moves.addAll(this.stepForMoves(board, dRow, 0));
+        }
+         for (int dCol : new int[] {-1, 1}) {
+            moves.addAll(this.stepForMoves(board, 0, dCol));
         }
         return moves;
     
@@ -24,7 +30,7 @@ public class Bishop extends ChessPiece {
 
     public String toString() {
         return (
-            (isWhite ^ Settings.lightMode) ? "♝" : "♗"
+            (isWhite ^ Settings.lightMode) ? "♜" : "♖"
         );
     }
 }

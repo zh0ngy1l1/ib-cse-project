@@ -1,4 +1,10 @@
+package fi.syk.chess;
+
 import java.util.ArrayList;
+
+import fi.syk.chess.tools.*;
+import fi.syk.chess.pieces.*;
+
 
 public class Testing {
     

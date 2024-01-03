@@ -1,4 +1,9 @@
+package fi.syk.chess.pieces;
+
 import java.util.ArrayList;
+
+import fi.syk.chess.*;
+import fi.syk.chess.tools.*;
 
 public class Pawn extends ChessPiece {
     public Pawn(boolean isWhite, Pair position) {

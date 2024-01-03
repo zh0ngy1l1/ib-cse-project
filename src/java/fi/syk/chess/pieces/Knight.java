@@ -1,4 +1,9 @@
+package fi.syk.chess.pieces;
+
 import java.util.ArrayList;
+
+import fi.syk.chess.*;
+import fi.syk.chess.tools.*;
 
 public class Knight extends ChessPiece {
     public Knight(boolean isWhite, Pair position) {

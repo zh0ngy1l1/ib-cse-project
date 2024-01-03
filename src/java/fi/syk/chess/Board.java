@@ -1,4 +1,9 @@
+package fi.syk.chess;
+
 import java.util.ArrayList;
+
+import fi.syk.chess.pieces.*;
+import fi.syk.chess.tools.*;
 
 public class Board implements Cloneable{
     protected ChessPiece[][] board;
@@ -22,7 +27,7 @@ public class Board implements Cloneable{
             Board newBoard = (Board) originalBoard.clone();
             newBoard.board[move.from.getFirst()][move.from.getSecond()] = null;
             newBoard.board[move.to.getFirst()][move.to.getSecond()] = move.piece;
-            move.piece.position = move.to;
+            move.piece.setPosition(move.to);
             newBoard.enPassantTarget = null; //FIX THIS
             newBoard.whitesTurn = !originalBoard.whitesTurn;
 

@@ -1,4 +1,9 @@
+package fi.syk.chess.pieces;
+
 import java.util.ArrayList;
+
+import fi.syk.chess.*;
+import fi.syk.chess.tools.*;
 
 public class ChessPiece {
     // Common properties and methods for all chess pieces
@@ -8,6 +13,15 @@ public class ChessPiece {
     public ChessPiece(boolean isWhite, Pair position) {
         this.position = position;
         this.isWhite = isWhite;
+    }
+
+    public void setPosition(Pair position) {
+        if (!Utils.isValidSquare(position)) {
+            throw new IllegalArgumentException("Square out of bounds");
+        }
+
+
+        this.position = position;
     }
 
     /**

@@ -1,3 +1,7 @@
+package fi.syk.chess.tools;
+
+
+
 //this is chatGPT code.
 //not mine.
 public class Pair implements Comparable<Pair> {

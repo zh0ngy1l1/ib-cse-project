@@ -1,3 +1,7 @@
+package fi.syk.chess.tools;
+
+import fi.syk.chess.pieces.ChessPiece;
+
 public class Move {
     public Pair from, to;
     public ChessPiece piece;
