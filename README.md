@@ -8,6 +8,7 @@ Bishop pretty much works. Just all the other pieces left.
 
 [x] make Board.displayMoves nicer
 
+[ ] YOU MOVE ENEMY PIECES ON YOUR TURN WTF
 [ ] Captures
 [ ] moves
 [ ] Game class (turns and shit)
