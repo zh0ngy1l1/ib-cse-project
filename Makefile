@@ -3,9 +3,11 @@
 # Unix tools
 FIND := find
 JAVA := java
+RM := rm
+RMFLAGS = -rf
 
 # Define compiler and compiler flags
-JFLAGS = -g -verbose
+JFLAGS = -g
 JC = javac
 
 # Define source and target directories
@@ -27,7 +29,7 @@ classes:
 
 # Target to clean compiled .class files
 clean:
-	$(RM) $(TARGET_DIR)/*.class
+	$(RM) $(RMFLAGS) $(TARGET_DIR)/*
 
 # Default value for FILENAME
 FILENAME ?= Testing
