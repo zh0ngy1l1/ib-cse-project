@@ -31,12 +31,12 @@ classes:
 clean:
 	$(RM) $(RMFLAGS) $(TARGET_DIR)/*
 
-# Default value for FILENAME
-FILENAME ?= Testing
+# Default value for FN
+FN ?= Testing
 
 # Target to run a specific file in target/classes
 run:
 	
-	$(JAVA) -cp $(CP) fi.syk.chess.$(FILENAME)
+	$(JAVA) -cp $(CP) fi.syk.chess.$(FN)
 #	(cd $(TARGET_DIR) && $(JAVA) -cp $(CP) $(basename $(shell find . -name "$(FILENAME)")))
 #	$(JAVA) -cp $(CP) $(basename $(shell find $(TARGET_DIR) -name "$(FILENAME)"))
