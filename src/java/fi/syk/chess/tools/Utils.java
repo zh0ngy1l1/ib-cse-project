@@ -2,6 +2,7 @@ package fi.syk.chess.tools;
 
 import java.util.ArrayList;
 import fi.syk.chess.pieces.*;
+import fi.syk.chess.Board;
 import fi.syk.chess.Settings;
 
 
@@ -75,6 +76,10 @@ public class Utils {
         return isWhite ? 1 : -1;
     }
 
+    /**
+     * we want to do something Pair constructor can't do:
+     * null if given "-".
+     */
     public static Pair getEnPassantTarget(String chessSquare) {
         if (chessSquare.equals("-")) return null; 
         return new Pair(chessSquare);
@@ -95,6 +100,13 @@ public class Utils {
         return castleArray;
     }
     
+    /**
+     * What's this pawn's starting row?
+     */
+    public static int getPawnStartingRow(boolean isWhite) {
+        return isWhite ? 2 : 7;
+    }
+
     /**
      * Takes a 9x9 array of ChessPiece and who's turn it is
      * and returns a string of what the board looks like.
@@ -122,13 +134,6 @@ public class Utils {
         if (whitesTurn) return boardString;
         else return new StringBuilder(boardString).reverse().toString();
 
-    }
-
-    /**
-     * What's this pawn's starting row?
-     */
-    public static int getPawnStartingRow(boolean isWhite) {
-        return isWhite ? 2 : 7;
     }
 
     @Deprecated

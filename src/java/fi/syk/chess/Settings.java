@@ -4,6 +4,7 @@ public class Settings {
     public static final boolean lightMode = false;
     public static final String ws = " ", bs = " ";
     public static final String startingFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+    public static final boolean confirmUserMoves = true;
 
     public static String getOverlaySeparator(boolean previousOccupied, boolean currentOccupied, boolean whitesTurn) {
         // if previous is not occupied and current is not occupied, return " "

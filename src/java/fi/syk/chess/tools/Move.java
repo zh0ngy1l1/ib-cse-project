@@ -17,7 +17,7 @@ public class Move {
     public String toString() {
         String moveString = piece.toString();
         if (isCapture) moveString += "x";
-        moveString += to.toBoardLocation();
+        moveString += to.toString();
 
         return moveString;
     }

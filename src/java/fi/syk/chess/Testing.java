@@ -7,7 +7,8 @@ import fi.syk.chess.pieces.*;
 
 
 public class Testing {
-    
+    public static final String testFEN = "8/4npk1/2ppq1pp/1r6/3PP3/1P3RNP/1P1Q2PK/8 w - - 6 33";
+
     static void test1(Pair location) {
         if (!Utils.isValidSquare(location)) return;
 
@@ -31,12 +32,14 @@ public class Testing {
         } System.out.println();
 
         System.out.println(board.displayBoard(
-            Utils.getTargetedSquares(moves),
-            true));
+            true,
+            Utils.getTargetedSquares(moves)
+            ));
     }
     public static void main(String[] args) {
         Pair p = new Pair("h6");
-        System.out.println(p);
+        Pair q = new Pair("h6");
+        System.out.println(p.equals(q));
 
     }
 }

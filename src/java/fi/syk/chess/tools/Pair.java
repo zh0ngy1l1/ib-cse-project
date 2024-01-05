@@ -1,6 +1,6 @@
 package fi.syk.chess.tools;
 
-
+import java.util.Objects;
 
 //this is chatGPT code.
 //not mine.
@@ -13,6 +13,10 @@ public class Pair implements Comparable<Pair> {
         this.second = second;
     }
 
+    /**
+     * Takes a chessSquare and makes it a Pair.
+     * example: "f4" -> Pair(4, 6)
+     */
     public Pair(String chessSquare) {
         this.first = Integer.valueOf(chessSquare.substring(1));
         this.second = (int) chessSquare.charAt(0) - (int) 'a' + 1;
@@ -34,14 +38,9 @@ public class Pair implements Comparable<Pair> {
         this.second = second;
     }
 
-    public String toBoardLocation() {
-        return "" + (char) ('a' + second - 1) + (char) ('1' + first - 1);
-    
-    }
-
     @Override
     public String toString() {
-        return "(" + first + ", " + second + ")";
+        return "" + (char) ('a' + second - 1) + (char) ('1' + first - 1);
     }
 
     @Override
@@ -51,5 +50,25 @@ public class Pair implements Comparable<Pair> {
             return firstComparison;
         }
         return Integer.compare(this.second, other.getSecond());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Pair other = (Pair) obj;
+        return this.first == other.first && this.second == other.second;
+    }
+
+    // ChatGPT says it's good practice. Trust.
+    @Override
+    public int hashCode() {
+        return Objects.hash(first, second);
     }
 }

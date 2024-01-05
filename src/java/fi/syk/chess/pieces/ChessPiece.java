@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import fi.syk.chess.*;
 import fi.syk.chess.tools.*;
 
-public class ChessPiece {
+public abstract class ChessPiece {
     // Common properties and methods for all chess pieces
     Pair position;
     boolean isWhite;
@@ -15,6 +15,10 @@ public class ChessPiece {
         this.isWhite = isWhite;
     }
 
+
+    /**
+     * Sets the position of this piece
+     */
     public void setPosition(Pair position) {
         if (!Utils.isValidSquare(position)) {
             throw new IllegalArgumentException("Square out of bounds");
@@ -25,13 +29,9 @@ public class ChessPiece {
     }
 
     /**
-     * you shouldn't ever have an object that is ChessPiece but not any specific ChessPiece.
-     * So this throws an error.
+     * get moves
      */
-    public ArrayList<Move> getMoves(Board board) {
-        // getMoves should be done with an existing piece, so it's implemented in the child class.
-        throw new UnsupportedOperationException("There's a bug if this happens.");
-    }
+    public abstract ArrayList<Move> getMoves(Board board);
 
     /**
      * Given the FEN character and position of the piece, creates an object for it.
@@ -55,7 +55,6 @@ public class ChessPiece {
         }
     }
 
-    
     public boolean isEnemy(ChessPiece p) {
         if (p == null) return false; // if p is null, then it's not an enemy.)
         return this.isWhite ^ p.isWhite;
