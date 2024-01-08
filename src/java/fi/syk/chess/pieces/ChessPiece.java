@@ -60,6 +60,10 @@ public abstract class ChessPiece {
         return this.isWhite ^ p.isWhite;
     }
 
+    public boolean isEnemy(boolean isWhite) {
+        return this.isWhite ^ isWhite;
+    }
+
     /**
      * moves for rook, bishop, queen
      * Steps one at a time to direction determined by dRow and dCol.
