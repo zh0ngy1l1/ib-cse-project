@@ -85,12 +85,17 @@ public class User extends Player {
             piece = board.pieceAt(from);
 
             if (piece == null) {
-                System.out.println("Square " + from + "is empty.\n");
+                System.out.println("Square " + from + " is empty.\n");
+                continue;
+            }
+
+            if (piece.isEnemy(isWhite)) {
+                System.out.println("Piece " + piece + " at " + from + " is not yours.\n");
                 continue;
             }
 
             if (piece.getMoves(board).isEmpty()) {
-                System.out.println("Piece " + piece + "at" + from + " has no legal moves.\n");
+                System.out.println("Piece " + piece + " at " + from + " has no legal moves.\n");
                 continue;
             }
 
