@@ -20,8 +20,6 @@ public class User extends Player {
 
         ArrayList<Pair> toOptions;
 
-        System.out.println(this.isWhite);
-
         // if confirmUserMoves is false, just need to run once.
         boolean finished = !Settings.confirmUserMoves;
 

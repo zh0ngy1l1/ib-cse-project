@@ -1,7 +1,6 @@
 package fi.syk.chess;
 
 import java.util.ArrayList;
-
 import fi.syk.chess.pieces.*;
 import fi.syk.chess.tools.*;
 
@@ -22,14 +21,14 @@ public class Board implements Cloneable{
         //gotta add 50moverule and threefold repetition counters for board.
     }
     
-    public static Board getBoardAfterMove(Board originalBoard, Move move) {
+    public Board getBoardAfterMove(Move move) {
         try {
-            Board newBoard = (Board) originalBoard.clone();
+            Board newBoard = (Board) this.clone();
             newBoard.board[move.from.getFirst()][move.from.getSecond()] = null;
             newBoard.board[move.to.getFirst()][move.to.getSecond()] = move.piece;
             move.piece.setPosition(move.to);
             newBoard.enPassantTarget = null; //FIX THIS
-            newBoard.whitesTurn = !originalBoard.whitesTurn;
+            newBoard.whitesTurn = !this.whitesTurn;
 
             return newBoard;
         } catch (CloneNotSupportedException e) {
@@ -116,9 +115,57 @@ public class Board implements Cloneable{
         else return new StringBuilder(boardString).reverse().toString();
     }
 
+    /**
+     * Return the position of the king
+     */
+    public Pair findKing(boolean isWhite) throws Exception {
+        for (int row = 1; row <= 8; row++) {
+            for (int col = 1; col <= 8; col++) {
+                if (board[row][col] == null) continue;
 
+                ChessPiece piece = board[row][col];
 
+                if (
+                    piece.getClass() == King.class &&
+                    !piece.isEnemy(isWhite)
+                ) return new Pair(row, col);
 
+            }
+        }
+        throw new Exception("NO KING FOUND! BUG!");
+    }
+
+    /**
+     * is square under attack?
+     */
+    public boolean isUnderAttack(Pair square, boolean whitesTurn) {
+        boolean underAttack = false;
+        ArrayList<Pair> moves;
+
+        for (int row = 1; row <= 8; row++) {
+            if (underAttack) break;
+
+            for (int col = 1; col <= 8; col++) {
+                if (underAttack) break;
+                
+                if (board[row][col] == null) continue;
+
+                ChessPiece piece = board[row][col];
+
+                if (!piece.isEnemy(whitesTurn)) continue;
+            
+                moves = Utils.getTargetedSquares(
+                    piece.getMoves(this));
+
+                for (Pair attackedSquare : moves) {
+                    if (square.equals(attackedSquare)) {
+                        underAttack = true;
+                    }
+                }
+            }
+        }
+        return underAttack;
+    }
 
     @Override
     public Object clone() throws CloneNotSupportedException {

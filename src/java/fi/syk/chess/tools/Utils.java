@@ -2,7 +2,7 @@ package fi.syk.chess.tools;
 
 import java.util.ArrayList;
 import fi.syk.chess.pieces.*;
-import fi.syk.chess.Board;
+//import fi.syk.chess.Board;
 import fi.syk.chess.Settings;
 
 
@@ -55,7 +55,14 @@ public class Utils {
             square.getSecond() < 1 || square.getSecond() > 8
         ));
     }
-    
+
+    /**
+     * get the turn's name
+     * ex: whitesTurn == true -> "white"
+     */
+    public static String getTurnName(boolean whitesTurn) {
+        return whitesTurn ? "white" : "black";
+    }
     
     /**
      * get only the targeted squares from a list of moves.
