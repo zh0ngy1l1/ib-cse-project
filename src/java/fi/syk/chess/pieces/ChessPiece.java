@@ -55,13 +55,18 @@ public abstract class ChessPiece {
         }
     }
 
-    public boolean isEnemy(ChessPiece p) {
-        if (p == null) return false; // if p is null, then it's not an enemy.)
-        return this.isWhite ^ p.isWhite;
+    public static boolean isEnemy(ChessPiece p1, ChessPiece p2) {
+        if (p1 == null || p2 == null) return false; // if p is null, then it's not an enemy.)
+        return p1.isWhite ^ p2.isWhite;
     }
 
-    public boolean isEnemy(boolean isWhite) {
-        return this.isWhite ^ isWhite;
+    public static boolean isEnemy(ChessPiece p1, boolean p2Color) {
+        if (p1 == null) return false; // if p is null, then it's not an enemy.)
+        return p1.isWhite ^ p2Color;
+    }
+
+    public static boolean isEnemy(boolean p1Color, boolean p2Color) {
+        return p1Color ^ p2Color;
     }
 
     /**
@@ -69,11 +74,11 @@ public abstract class ChessPiece {
      * Steps one at a time to direction determined by dRow and dCol.
      * Stops to capture or before ally piece and returns all moves in this direction.
      */
-    public ArrayList<Move> stepForMoves(Board board, int dRow, int dCol) {
+    public static ArrayList<Move> stepForMoves(Board board, Pair curPosition, int dRow, int dCol) {
         ArrayList<Move> moves = new ArrayList<>();
 
-        int curRow = this.position.getFirst(), 
-            curCol = this.position.getSecond();
+        int curRow = curPosition.getFirst(), 
+            curCol = curPosition.getSecond();
         
         for (int steps = 1; steps <= 7; steps++) {
 
@@ -85,12 +90,12 @@ public abstract class ChessPiece {
             if (!Utils.isValidSquare(newPosition)) break;
 
             if (board.pieceAt(newPosition) != null) {
-                if (isEnemy(board.pieceAt(newPosition))) {
-                    moves.add(new Move(this.position, newPosition));
+                if (isEnemy(board.pieceAt(newPosition), board.pieceAt(curPosition))) {
+                    moves.add(new Move(curPosition, newPosition));
                 }
                 break;
             }
-            moves.add(new Move(this.position, newPosition));
+            moves.add(new Move(curPosition, newPosition));
         }
         return moves;
     }
@@ -100,10 +105,10 @@ public abstract class ChessPiece {
      * Steps once to direction determined by dRow and dCol.
      * Returns either null (move cannot be made) or the move.
      */
-    public Move stepOnce(Board board, int dRow, int dCol) {
+    public static Move stepOnce(Board board, Pair curPosition, int dRow, int dCol) {
 
-        int curRow = this.position.getFirst(), 
-            curCol = this.position.getSecond();
+        int curRow = curPosition.getFirst(), 
+            curCol = curPosition.getSecond();
 
         Pair newPosition = new Pair(
             curRow + dRow, 
@@ -113,12 +118,12 @@ public abstract class ChessPiece {
         if (!Utils.isValidSquare(newPosition)) return null;
 
         if (board.pieceAt(newPosition) != null) {
-            if (isEnemy(board.pieceAt(newPosition))) {
-                return new Move(this.position, newPosition);
+            if (isEnemy(board.pieceAt(newPosition), board.pieceAt(curPosition))) {
+                return new Move(curPosition, newPosition);
             }
             return null;
         }
-        return new Move(this.position, newPosition);
+        return new Move(curPosition, newPosition);
     }
 
 }
