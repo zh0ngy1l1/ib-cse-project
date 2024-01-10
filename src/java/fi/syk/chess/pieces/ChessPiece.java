@@ -31,7 +31,7 @@ public abstract class ChessPiece {
     /**
      * get moves
      */
-    public abstract ArrayList<Move> getMoves(Board board);
+    public abstract ArrayList<Move> getMoves(Board board, Pair position);
 
     /**
      * Given the FEN character and position of the piece, creates an object for it.

@@ -129,7 +129,7 @@ public class Board implements Cloneable{
 
                 if (
                     piece.getClass() == King.class &&
-                    !piece.isEnemy(isWhite)
+                    !ChessPiece.isEnemy(piece, isWhite)
                 ) return new Pair(row, col);
 
             }
@@ -150,14 +150,16 @@ public class Board implements Cloneable{
             for (int col = 1; col <= 8; col++) {
                 if (underAttack) break;
                 
-                if (board[row][col] == null) continue;
+                Pair enemyPos = new Pair(row, col);
 
-                ChessPiece piece = board[row][col];
+                if (this.pieceAt(enemyPos) == null) continue;
 
-                if (!piece.isEnemy(whitesTurn)) continue;
+                ChessPiece piece = this.pieceAt(enemyPos);
+
+                if (!ChessPiece.isEnemy(piece, whitesTurn)) continue;
             
                 moves = Utils.getTargetedSquares(
-                    piece.getMoves(this));
+                    piece.getMoves(this, enemyPos));
 
                 for (Pair attackedSquare : moves) {
                     if (square.equals(attackedSquare)) {

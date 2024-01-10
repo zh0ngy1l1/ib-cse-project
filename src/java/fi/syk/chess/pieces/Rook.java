@@ -15,14 +15,14 @@ public class Rook extends ChessPiece {
      * Returns an ArrayList of all the possible moves
      * may and probably return some illegal moves (put own king in check, etc.)
      */
-    public ArrayList<Move> getMoves(Board board) {
+    public ArrayList<Move> getMoves(Board board, Pair position) {
         ArrayList<Move> moves = new ArrayList<>();
 
         for (int dRow : new int[] {-1, 1}) {
-            moves.addAll(this.stepForMoves(board, dRow, 0));
+            moves.addAll(ChessPiece.stepForMoves(board, position, dRow, 0));
         }
-         for (int dCol : new int[] {-1, 1}) {
-            moves.addAll(this.stepForMoves(board, 0, dCol));
+        for (int dCol : new int[] {-1, 1}) {
+            moves.addAll(ChessPiece.stepForMoves(board, position, 0, dCol));
         }
         return moves;
     

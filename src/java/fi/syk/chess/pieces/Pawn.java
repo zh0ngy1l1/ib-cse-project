@@ -17,13 +17,15 @@ public class Pawn extends ChessPiece {
      * TODO en passant
      * TODO promotion
      */
-    public ArrayList<Move> getMoves(Board board) {
+    public ArrayList<Move> getMoves(Board board, Pair curPosition) {
         ArrayList<Move> moves = new ArrayList<>();
 
-        int curRow = this.position.getFirst(), 
-            curCol = this.position.getSecond();
+        int curRow = curPosition.getFirst(), 
+            curCol = curPosition.getSecond();
 
-        int direction = Utils.getPawnDirection(this.isWhite);
+        boolean isWhite = board.pieceAt(curPosition).isWhite;
+        int direction = Utils.getPawnDirection(isWhite);
+
 
         Pair newPosition = new Pair(
                 curRow + direction,
@@ -36,7 +38,7 @@ public class Pawn extends ChessPiece {
 
         // Standard move one square forward
         if (board.pieceAt(newPosition) == null) {
-            moves.add(new Move(this.position, newPosition));
+            moves.add(new Move(curPosition, newPosition));
 
             if (curRow == Utils.getPawnStartingRow(isWhite)) {
                 // Move two squares forward if it's the pawn's first move
@@ -47,7 +49,7 @@ public class Pawn extends ChessPiece {
                 );
 
                 if (board.pieceAt(newPosition) == null) {
-                    moves.add(new Move(this.position, newPosition));
+                    moves.add(new Move(curPosition, newPosition));
                 }
             }
         }
@@ -62,8 +64,8 @@ public class Pawn extends ChessPiece {
 
             if (!Utils.isValidSquare(newPosition)) continue;
 
-            if (isEnemy(board.pieceAt(newPosition))) {
-                moves.add(new Move(this.position, newPosition));
+            if (isEnemy(board.pieceAt(newPosition), isWhite)) {
+                moves.add(new Move(curPosition, newPosition));
             }
         }
         
