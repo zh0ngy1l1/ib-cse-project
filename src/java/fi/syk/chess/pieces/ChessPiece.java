@@ -86,11 +86,11 @@ public abstract class ChessPiece {
 
             if (board.pieceAt(newPosition) != null) {
                 if (isEnemy(board.pieceAt(newPosition))) {
-                    moves.add(new Move(this, this.position, newPosition, true));
+                    moves.add(new Move(this.position, newPosition));
                 }
                 break;
             }
-            moves.add(new Move(this, this.position, newPosition, false));
+            moves.add(new Move(this.position, newPosition));
         }
         return moves;
     }
@@ -114,11 +114,11 @@ public abstract class ChessPiece {
 
         if (board.pieceAt(newPosition) != null) {
             if (isEnemy(board.pieceAt(newPosition))) {
-                return new Move(this, this.position, newPosition, true);
+                return new Move(this.position, newPosition);
             }
             return null;
         }
-        return new Move(this, this.position, newPosition, false);
+        return new Move(this.position, newPosition);
     }
 
 }

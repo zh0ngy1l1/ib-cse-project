@@ -36,7 +36,7 @@ public class Pawn extends ChessPiece {
 
         // Standard move one square forward
         if (board.pieceAt(newPosition) == null) {
-            moves.add(new Move(this, this.position, newPosition, false));
+            moves.add(new Move(this.position, newPosition));
 
             if (curRow == Utils.getPawnStartingRow(isWhite)) {
                 // Move two squares forward if it's the pawn's first move
@@ -47,7 +47,7 @@ public class Pawn extends ChessPiece {
                 );
 
                 if (board.pieceAt(newPosition) == null) {
-                    moves.add(new Move(this, this.position, newPosition, false));
+                    moves.add(new Move(this.position, newPosition));
                 }
             }
         }
@@ -63,7 +63,7 @@ public class Pawn extends ChessPiece {
             if (!Utils.isValidSquare(newPosition)) continue;
 
             if (isEnemy(board.pieceAt(newPosition))) {
-                moves.add(new Move(this, this.position, newPosition, true));
+                moves.add(new Move(this.position, newPosition));
             }
         }
         

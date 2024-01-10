@@ -42,7 +42,7 @@ public class User extends Player {
             if (Settings.confirmUserMoves) finished = userConfirmed();
         } while (!finished);
         
-        return new Move(piece, from, to, !(board.pieceAt(to)==null));
+        return new Move(from, to);
     }
 
     /**

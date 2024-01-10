@@ -24,9 +24,11 @@ public class Board implements Cloneable{
     public Board getBoardAfterMove(Move move) {
         try {
             Board newBoard = (Board) this.clone();
+            ChessPiece piece = this.board[move.from.getFirst()][move.from.getSecond()];
+
             newBoard.board[move.from.getFirst()][move.from.getSecond()] = null;
-            newBoard.board[move.to.getFirst()][move.to.getSecond()] = move.piece;
-            move.piece.setPosition(move.to);
+            newBoard.board[move.to.getFirst()][move.to.getSecond()] = piece;
+            piece.setPosition(move.to);
             newBoard.enPassantTarget = null; //FIX THIS
             newBoard.whitesTurn = !this.whitesTurn;
 
