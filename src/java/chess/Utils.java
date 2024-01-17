@@ -1,6 +1,27 @@
 package chess;
 
 public class Utils {
+
+    public static boolean isValidFEN(String FEN) {
+
+        if (FEN.split(" ").length != 6) return false;
+
+        String FEN_board = FEN.split(" ")[0];
+        String[] rows = FEN_board.split("/");
+
+        for (String row : rows) {
+            int sum = 0;
+            for (char c : row.toCharArray()) {
+                sum += Character.isDigit(c) ? Integer.parseInt(String.valueOf(c)) : 1;
+            }
+            if (sum != 8) return false;
+        }
+
+        if ((FEN.split(" ")[1] != "w") && (FEN.split(" ")[1] != "b")) return false;
+
+        return true;
+    }
+
     /**
      * Takes the FEN notation and makes it an array with 
      * the row representing the rank and the column 

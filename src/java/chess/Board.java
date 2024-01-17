@@ -1,11 +1,11 @@
 package chess;
 public class Board {
-    protected String[][] board;
+    private String[][] board;
     public boolean whitesTurn;
 
     public Board(String FEN) {
 
-        String[] FEN_parts = FEN.split(" "); //"r3k2r/2p1npp1/1pnpbq1p/pB2p3/P3P3/2PPbN2/1PQN1PPP/R4RK1 w kq - 0 13"
+        String[] FEN_parts = FEN.split(" ");
         
         this.board = Utils.fenToBoard(FEN_parts[0]);
         this.whitesTurn = FEN_parts[1].equals("w");
@@ -32,7 +32,6 @@ public class Board {
                 boardString += overlaySeparator + (piece == null ? squareColor : piece);
             }
             
-            // now the last overlayboard separator
             boardString += " ";
             boardString += row + "\n";
         }

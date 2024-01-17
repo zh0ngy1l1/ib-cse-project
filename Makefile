@@ -36,7 +36,4 @@ FN ?= Main
 
 # Target to run a specific file in target/classes
 run:
-	
 	$(JAVA) -cp $(CP) chess.$(FN)
-#	(cd $(TARGET_DIR) && $(JAVA) -cp $(CP) $(basename $(shell find . -name "$(FILENAME)")))
-#	$(JAVA) -cp $(CP) $(basename $(shell find $(TARGET_DIR) -name "$(FILENAME)"))
