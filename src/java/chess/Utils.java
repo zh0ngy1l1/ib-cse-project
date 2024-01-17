@@ -1,3 +1,5 @@
+package chess;
+
 public class Utils {
     /**
      * Takes the FEN notation and makes it an array with 

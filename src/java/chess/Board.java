@@ -1,3 +1,4 @@
+package chess;
 public class Board {
     protected String[][] board;
     public boolean whitesTurn;
@@ -21,7 +22,7 @@ public class Board {
             boardString += row;
 
             for (int col = 1; col <= 8; col++){
-                ChessPiece piece = pieceAt(new Pair(row, col));
+                String piece = pieceAt(new Pair(row, col));
 
                 // if the sum of row + col is odd, the square is white.
                 String squareColor = ((row + col) & 1) == 1 ? Settings.ws : Settings.bs;
