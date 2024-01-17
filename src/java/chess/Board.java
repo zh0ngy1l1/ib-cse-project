@@ -14,7 +14,7 @@ public class Board {
     /**
      * Display the board, with chess pieces,
      */
-    public String displayBoard(boolean whitesTurn) {
+    public String displayBoard() {
 
         String boardString = "  a b c d e f g h  \n";
 
