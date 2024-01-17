@@ -1,11 +1,3 @@
 {
-    "java.project.sourcePaths": ["src/java"],
-    "java.project.referencedLibraries": {
-        "include": [
-            "lib/**/*.jar",
-            "/home/david/codework/ib-cse-project/lib/algs4.jar"
-        ],
-        "exclude": [
-        ]
-    }
+    "java.project.sourcePaths": []
 }
