@@ -17,7 +17,10 @@ public class Utils {
             if (sum != 8) return false;
         }
 
-        if ((FEN.split(" ")[1] != "w") && (FEN.split(" ")[1] != "b")) return false;
+        if (
+            (FEN.split(" ")[1].equals("w")) && 
+            (FEN.split(" ")[1].equals("b"))
+        ) return false;
 
         return true;
     }
