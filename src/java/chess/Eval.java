@@ -5,20 +5,35 @@ import java.util.Scanner;
 
 public class Eval {
 
-    public static double evaluateFEN(String FEN) {
-        double evaluation = 0;
+    /**
+     * gets the stockfish eval from the FEN
+     */
+    public static String evaluateFEN(String FEN) {
+        String evaluation = "";
         
         HttpURLConnection connection = getConnection(FEN, "eval");
 
         // Read the response from the server
         try (Scanner input = new Scanner(connection.getInputStream())) {
             String data = input.nextLine();
+            String[] dataSplit = data.split(" ");
             
             // it should look like this {"success":true, "data":"Total evaluation: -1.79 (white side)"}
-            evaluation = Double.valueOf(data.split(" ")[3]);
+            // like this if there's forcing mate {"success":true, "data":"Total evaluation: White has mate in 2"}
+            if (dataSplit.length == 6)
+                evaluation = dataSplit[3];
+            else
+                evaluation = 
+                    "M" + 
+                    dataSplit[7].substring(
+                        0, 
+                        dataSplit[7].indexOf("\"")
+                    ) + 
+                    " for " + 
+                    dataSplit[3];
 
         } catch (Exception e) {
-            System.out.println("Error occurred, returning eval = 0");
+            System.out.println("Error occurred in evaluation.");
             System.out.println(e);
         }
 
@@ -28,6 +43,9 @@ public class Eval {
         return evaluation;
     }
 
+    /**
+     * gets the best move by stockfish from the FEN
+     */
     public static String bestMoveFEN(String FEN) {
         String bestMove = "";
         
@@ -51,6 +69,9 @@ public class Eval {
         return bestMove;
     }
 
+    /**
+     * get the connection to stockfish.online
+     */
     private static HttpURLConnection getConnection(String FEN, String mode) {
         HttpURLConnection connection = null;
 

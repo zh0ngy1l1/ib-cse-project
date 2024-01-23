@@ -3,10 +3,14 @@ public class Settings {
     public static final boolean lightMode = false;
     public static final String ws = " ", bs = " ";
     public static final String startingFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-    public static final String testFEN = "r3k2r/2p1npp1/1pnpbq1p/pB2p3/P3P3/2PPbN2/1PQN1PPP/R4RK1 w kq - 0 13";
+    public static final String testFEN = "4r2k/6pp/8/3QN3/8/q7/5PPP/6K1 w - - 0 1";
     public static final String evalUrl = "https://stockfish.online/api/stockfish.php";
     public static final int evalDepth = 13; // depth must be less than 14
 
+    /**
+     * get the overlay separator so you can display squares on the board as selected
+     * it's flipped if it's black's turn
+     */
     public static String getOverlaySeparator(boolean previousOccupied, boolean currentOccupied, boolean whitesTurn) {
         // if previous is not occupied and current is not occupied, return " "
         // if previous is occupied and current is occupied, return "|"

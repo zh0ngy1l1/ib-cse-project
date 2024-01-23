@@ -82,6 +82,9 @@ public class Board {
         else return new StringBuilder(boardString).reverse().toString();
     }
 
+    /**
+     * returns the piece at square.
+     */
     public String pieceAt(Pair square) {
         if (!Utils.isValidSquare(square)) {
             throw new IllegalArgumentException("Square out of bounds");

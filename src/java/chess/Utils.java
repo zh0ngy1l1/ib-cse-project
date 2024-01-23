@@ -12,7 +12,12 @@ public class Utils {
         for (String row : rows) {
             int sum = 0;
             for (char c : row.toCharArray()) {
-                sum += Character.isDigit(c) ? Integer.parseInt(String.valueOf(c)) : 1;
+                if (Character.isDigit(c)) {
+                    sum += Integer.parseInt(String.valueOf(c));
+                } else {
+                    if (Utils.charToPiece(c) == "?") return false;
+                    sum ++;
+                }
             }
             if (sum != 8) return false;
         }
@@ -85,8 +90,9 @@ public class Utils {
             return (isWhite ^ Settings.lightMode) ? "♜" : "♖";
         } if (c == 'q') {
             return (isWhite ^ Settings.lightMode) ? "♛" : "♕";
-        } else {
+        } if (c == 'k') {
             return (isWhite ^ Settings.lightMode) ? "♚" : "♔";
-        }
+        } else 
+            return "?";
     }
 }
