@@ -34,9 +34,12 @@ public class Main {
 
         System.out.println(board.displayBoard(overlaySquares));
         System.out.printf("Eval: %s, Best Move: %s%n", evaluation, bestMove);
-        
+
     }
 
+    /**
+     * get FEN string from user.
+     */
     private static String getFEN() {
         try (Scanner in = new Scanner(System.in)) {
             return in.nextLine();
